@@ -29,17 +29,12 @@ public struct PlayerEvent : IEvent {
     public int mana;
 }
 
-EventBinding<PlayerEvent> playerEventBinding;
-
 void OnEnable() {    
-    playerEventBinding = new EventBinding<PlayerEvent>(HandlePlayerEvent);
-    EventBus<PlayerEvent>.Register(playerEventBinding);
-
-    // Can Add or Remove Actions to/from the EventBinding
+    EventBus<PlayerEvent>.Register(HandlePlayerEvent);
 }
 
 void OnDisable() {
-    EventBus<PlayerEvent>.Deregister(playerEventBinding);
+    EventBus<PlayerEvent>.Deregister(HandlePlayerEvent);
 }
 
 void Start() {
@@ -58,7 +53,7 @@ void HandlePlayerEvent(PlayerEvent playerEvent) {
 
 [**Watch the tutorial video here**](https://youtu.be/4_DTAnigmaQ)
 
-You can also check out my [YouTube channel](https://www.youtube.com/@git-amend?sub_confirmation=1) for more Unity content.
+You can also check out author's [YouTube channel](https://www.youtube.com/@git-amend?sub_confirmation=1) for more Unity content.
 
 ## Installation and Setup
 Since this is a Unity-centric project, you will need to have Unity installed on your system. The EventBus codebase is entirely C# and conforms to the .NETFramework v4.7.1 standards.
