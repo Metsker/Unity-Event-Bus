@@ -1,30 +1,31 @@
-﻿using System;
+using System;
 
-public interface IEventBinding<T> {
-    public Action<T> OnEvent { get; set; }
-    public Action OnEventNoArgs { get; set; }
-}
-
-public class EventBinding<T> : IEventBinding<T> where T : IEvent {
-    Action<T> onEvent = _ => { };
-    Action onEventNoArgs = () => { };
-
-    Action<T> IEventBinding<T>.OnEvent {
-        get => onEvent;
-        set => onEvent = value;
+internal readonly struct EventBinding<T> : IEquatable<EventBinding<T>> where T : IEvent {
+    
+    public Action<T> OnEvent { get; }
+    public Action OnEventNoArgs { get; }
+    
+    private EventBinding(Action<T> onEvent)
+    {
+        OnEvent = onEvent;
+        OnEventNoArgs = () => {};
     }
 
-    Action IEventBinding<T>.OnEventNoArgs {
-        get => onEventNoArgs;
-        set => onEventNoArgs = value;
+    private EventBinding(Action onEventNoArgs)
+    {
+        OnEvent = _ => {};
+        OnEventNoArgs = onEventNoArgs;
     }
 
-    public EventBinding(Action<T> onEvent) => this.onEvent = onEvent;
-    public EventBinding(Action onEventNoArgs) => this.onEventNoArgs = onEventNoArgs;
+    public bool Equals(EventBinding<T> other) =>
+        Equals(OnEvent, other.OnEvent) && Equals(OnEventNoArgs, other.OnEventNoArgs);
+
+    public override bool Equals(object obj) =>
+        obj is EventBinding<T> other && Equals(other);
     
-    public void Add(Action onEvent) => onEventNoArgs += onEvent;
-    public void Remove(Action onEvent) => onEventNoArgs -= onEvent;
+    public override int GetHashCode() =>
+        HashCode.Combine(OnEvent, OnEventNoArgs);
     
-    public void Add(Action<T> onEvent) => this.onEvent += onEvent;
-    public void Remove(Action<T> onEvent) => this.onEvent -= onEvent;
+    public static explicit operator EventBinding<T>(Action<T> action) => new (action);
+    public static explicit operator EventBinding<T>(Action actionNoArgs) => new (actionNoArgs);
 }
