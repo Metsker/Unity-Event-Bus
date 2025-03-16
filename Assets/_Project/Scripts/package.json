@@ -1,0 +1,10 @@
+{
+  "name": "com.metsker.event-bus",
+  "version": "1.0.0",
+  "displayName": "event-bus",
+  "description": "Simlified git-amend's event bus",
+  "author": {
+    "name": "Metsker",
+    "url": "https://github.com/Metsker"
+  }
+}
