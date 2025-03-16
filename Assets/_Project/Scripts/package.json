@@ -1,7 +1,7 @@
 {
   "name": "com.metsker.event-bus",
   "version": "1.0.0",
-  "displayName": "Event Bus",
+  "displayName": "Simlified Event Bus",
   "description": "Simlified git-amend's event bus",
   "author": {
     "name": "Metsker",
