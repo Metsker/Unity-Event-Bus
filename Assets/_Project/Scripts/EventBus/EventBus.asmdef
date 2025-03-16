@@ -1,4 +1,4 @@
 {
     "name": "EventBus",
-    "noEngineReferences": true
+    "noEngineReferences": false
 }
