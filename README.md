@@ -14,11 +14,6 @@ This EventBus system contains several C# classes residing in the Scripts\EventBu
 
 3. `Events.cs` - IEvent interface and sample code, which shows how to define custom events.
 
-4. `PredefinedAssemblyUtil.cs` - Utility class for locating assemblies and finding types within them. See [Unity Documentation](https://docs.unity3d.com/Manual/ScriptCompileOrderFolders.html).
-
-5. `EventBusUtil.cs` - Static initialization methods and additional utilities used for EventBus.
-
-
 ## Example Usage
 
 The usage generally works like:
