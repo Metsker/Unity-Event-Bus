@@ -12,7 +12,7 @@ This EventBus system contains several C# classes residing in the Scripts\EventBu
 
 2. `EventBinding.cs` - IEventBinding interface and class definition for EventBinding, which is used to bind functions to events.
 
-3. `Events.cs` - IEvent interface and sample code, which shows how to define custom events.
+3. `IEvent.cs` - Base interface for custom events.
 
 ## Example Usage
 
